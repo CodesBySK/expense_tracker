@@ -5,24 +5,25 @@ A Flutter-based mobile application developed.
 The Mini Expense Tracker allows users the following features.
 
 ##  Features
+* Add Expense
+* Edit Expense
+* Delete Expense
+* View Expense List
+* Expense Categories
+* Expense Date Selection
+* Total Expense Calculation
+* Monthly Expense Calculation
+* Form Validation
+* Local Data Persistence
 
-* ➕ Add expenses
-* 📋 View expense list
-* 💰 Calculate total expenses
-* 🏷️ Expense categories
-* 📅 Select expense dates
-* ✏️ Edit expenses
-* 🗑️ Delete expenses
-* 🔍 Search expenses
-* 🔎 Filter expenses by category
-* 💾 Local data persistence
-* ✅ Form validation
-* 🎨 Consistent color theme
-* 📱 Navigation between screens
-* 🔄 Automatic dashboard updates
-* 📊 Total transaction count
-* 🎯 Responsive and user-friendly UI
-
+## Day 3 Improvements
+* Search Expenses
+* Category Filtering
+* Category-wise Expense Summary 
+* Monthly Total
+* Improved UI/UX
+* Empty State
+   
 ## 📱 Application Screens
 
 ### 1. Dashboard
@@ -30,7 +31,8 @@ The Mini Expense Tracker allows users the following features.
 The dashboard displays:
 
 * Total expense amount
-* Total number of transactions
+* Current Month's Expense
+* Total transactions
 * Add Expense button
 * View Expenses button
 
@@ -43,28 +45,23 @@ Users can enter:
 * Category
 * Date
 
-The form validates the entered information before saving the expense.
+Basic validation is applied before before saving the expense.
 
 ### 3. Expense List
 
 The expense list displays:
 
-* Expense title
-* Amount
-* Category
-* Date
-* Category icon
-* Edit option
-* Delete option
-
-The screen also provides:
-
-* Search functionality
-* Category filters
-
+* Search
+* Category filtering
+* Edit
+* Delete
+* Expense date
+* Expense category
+* Expense amount
+ 
 ##  UI & Theme
 
-The application uses a modern pink-based color theme.
+The application uses a modern pink-based accent theme.
 
 The interface includes:
 
@@ -76,12 +73,14 @@ The interface includes:
 * Material 3 components
 * Consistent spacing and typography
 
+The Dashboard is improved to provide a more compact and organized layout, including
+side-by-side summary cards and action buttons
 ## 🛠️ Technologies Used
 
 * **Flutter**
 * **Dart**
 * **Android Studio**
-* **Material 3**
+* **Material Design**
 * **SharedPreferences**
 
 ## 📦 Version Information
@@ -144,7 +143,21 @@ This allows expenses to remain available even after the application is closed an
 The dashboard calculates the total amount of all stored expenses using Dart's `fold()` method.
 
 The dashboard updates when expenses are added, edited, or deleted.
+## Monthly Expense Calculation
 
+In the Dashboard we also calculates the total expense for the current month.
+The application compares the month and year of each expense with the current month and year and then calculates the total.
+
+## Category-wise Expense Summary
+
+The Dashboard provides a category summary for:
+* Food
+* Transport
+* Shopping
+* Bills
+* Other
+
+The application filters expenses by category and calculates the total amount for each category.
 ##  Search & Filter
 
 The Expense List provides two ways to find expenses:
@@ -196,41 +209,35 @@ The application checks that:
 
 During this project, I practiced:
 
-* Creating a Flutter application
-* Building UI with Flutter widgets
+* Flutter application structure
+* Dart classes and models
 * Using `StatelessWidget` and `StatefulWidget`
-* Creating Dart models
-* Organizing a Flutter project
+* Navigation between screens
 * Form validation
-* Text input handling
-* Dropdown menus
-* Date pickers
-* Screen navigation
-* Passing data between screens
-* Creating reusable widgets
-* Managing application state
-* Using `setState()`
-* Searching and filtering lists
-* Editing and deleting data
-* Calculating values using Dart collection methods
-* Local data persistence using SharedPreferences
-* Creating a consistent application theme
-* Debugging and using `flutter analyze`
+* Date selection
+* List Handling
+* Search and filtering
+* Category-based selection
+* Local data persistence
+* JSON encoding and decoding
+* SharedPreferences
+* Reusable Flutter widgets
+* UI layout using Row, Column, Card, and Expanded
+  
 
-## ⚠️ Challenges Faced
+##  Problems 
 
-Some challenges during development included:
+## 1. Keeping Expense Data Available Between Screens
 
-* Managing shared expense data between screens.
-* Updating the dashboard after adding, editing, and deleting expenses.
-* Persisting expense data locally.
-* Handling asynchronous operations safely.
-* Fixing Flutter analyzer warnings.
+In application I need a shared place to store expenses so that different screens could access the same data.
+So I came up with solution to create an ExpenseData class to maintain the expense list and provide access to it throughout the application.
 
-These challenges helped improve my understanding of Flutter application structure and state management.
+## 2. Saving Data After Restarting the Application
 
-## 🚀 Future Improvements
+Initially, expenses were only stored in memory, meaning they could disappear when the application was restarted.
+So I Used SharedPreferences to save expense data locally using JSON.
 
+## Future Improvements
 Possible future improvements include:
 
 *  Cloud database integration
@@ -240,12 +247,17 @@ Possible future improvements include:
 *  Export expenses to CSV or PDF
 *  Cloud synchronization across devices
 
+
+## Internship Task
+
+This project is develop as part of the:
+
+HisabDo / XICTEK Systems — Batch 2 Internship
+
+## Track: Flutter
+
+Task: Mini Expense Tracker — Day 1, Day 2 & Day 3
 ##  Developer
 
 **Savaira Kiran**
 
-Flutter Developer — Internship Trainee
-
----
-
-Developed for practical learning and experience in Flutter application development.

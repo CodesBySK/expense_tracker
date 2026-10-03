@@ -46,9 +46,6 @@ class ExpenseData {
       });
     }).toList();
 
-    await prefs.setStringList(
-      _storageKey,
-      savedExpenses,
-    );
+    await prefs.setStringList(_storageKey, savedExpenses);
   }
 }

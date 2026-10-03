@@ -5,7 +5,7 @@ import 'screens/dashboard_screen.dart';
 import 'screens/add_expense_screen.dart';
 import 'screens/expense_list_screen.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await ExpenseData.loadExpenses();
@@ -37,9 +37,7 @@ class ExpenseTrackerApp extends StatelessWidget {
             backgroundColor: const Color(0xFFFF84AE),
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
           ),
         ),
@@ -47,27 +45,16 @@ class ExpenseTrackerApp extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
-            borderSide: BorderSide(
-              color: Color(0xFFFF84AE),
-              width: 2,
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: Color(0xFFFF84AE), width: 2),
           ),
         ),
         cardTheme: const CardThemeData(

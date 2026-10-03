@@ -6,11 +6,7 @@ class AddExpenseScreen extends StatefulWidget {
   final Expense? expense;
   final int? expenseIndex;
 
-  const AddExpenseScreen({
-    super.key,
-    this.expense,
-    this.expenseIndex,
-  });
+  const AddExpenseScreen({super.key, this.expense, this.expenseIndex});
 
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
@@ -61,20 +57,16 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     }
 
     if (_selectedCategory == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please select a category'),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select a category')));
       return;
     }
 
     if (_selectedDate == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please select a date'),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select a date')));
       return;
     }
     final expense = Expense(
@@ -91,20 +83,21 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     }
 
     await ExpenseData.saveExpenses();
-    if(!mounted) return;
+    if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-            widget.expenseIndex != null
-                ? 'Expense saved successfully!'
-                : 'Expense Saved Successfully',
+          widget.expenseIndex != null
+              ? 'Expense saved successfully!'
+              : 'Expense Saved Successfully',
         ),
       ),
     );
 
     Navigator.pop(context);
   }
+
   @override
   void initState() {
     super.initState();
@@ -121,9 +114,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            widget.expense == null ? 'Add Expense':'Edit Expense',
-        ),
+        title: Text(widget.expense == null ? 'Add Expense' : 'Edit Expense'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -223,15 +214,14 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   decoration: const InputDecoration(
                     labelText: 'Date',
                     border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.calendar_today,
-                    ),
+                    prefixIcon: Icon(Icons.calendar_today),
                   ),
                   child: Text(
                     _selectedDate == null
                         ? 'Select Date'
                         : '${_selectedDate!.day}/'
-                        '${_selectedDate!.month}/'
-                        '${_selectedDate!.year}',
+                              '${_selectedDate!.month}/'
+                              '${_selectedDate!.year}',
                   ),
                 ),
               ),
@@ -241,8 +231,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               ElevatedButton.icon(
                 onPressed: _saveExpense,
                 icon: const Icon(Icons.save),
-                label:  Text(
-                  widget.expense == null ? 'Save Expense':'Update Expense',
+                label: Text(
+                  widget.expense == null ? 'Save Expense' : 'Update Expense',
                   //style: TextStyle(color: Colors.black),
                 ),
               ),

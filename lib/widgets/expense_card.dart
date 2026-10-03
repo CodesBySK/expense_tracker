@@ -85,27 +85,21 @@ class ExpenseCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
-        leading: CircleAvatar(
-          child: Icon(_getCategoryIcon(expense.category)),
-        ),
+        leading: CircleAvatar(child: Icon(_getCategoryIcon(expense.category))),
         title: Text(
           expense.title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
           '${expense.category} • '
-              '${expense.date.day}/${expense.date.month}/${expense.date.year}',
+          '${expense.date.day}/${expense.date.month}/${expense.date.year}',
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               'Rs. ${expense.amount.toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             IconButton(
               onPressed: onEdit,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../expense_data.dart';
@@ -28,20 +27,18 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
   @override
   Widget build(BuildContext context) {
     final filteredExpenses = ExpenseData.expenses.where((expense) {
-      final matchesSearch = expense.title
-          .toLowerCase()
-          .contains(searchQuery.toLowerCase());
+      final matchesSearch = expense.title.toLowerCase().contains(
+        searchQuery.toLowerCase(),
+      );
 
-      final matchesCategory = selectedCategory == 'All' ||
-          expense.category == selectedCategory;
+      final matchesCategory =
+          selectedCategory == 'All' || expense.category == selectedCategory;
 
       return matchesSearch && matchesCategory;
     }).toList();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expense List'),
-      ),
+      appBar: AppBar(title: const Text('Expense List')),
       body: Column(
         children: [
           // Search bar
@@ -58,13 +55,13 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: searchQuery.isNotEmpty
                     ? IconButton(
-                  onPressed: () {
-                    setState(() {
-                      searchQuery = '';
-                    });
-                  },
-                  icon: const Icon(Icons.clear),
-                )
+                        onPressed: () {
+                          setState(() {
+                            searchQuery = '';
+                          });
+                        },
+                        icon: const Icon(Icons.clear),
+                      )
                     : null,
               ),
             ),
@@ -103,51 +100,52 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
           Expanded(
             child: filteredExpenses.isEmpty
                 ? const Center(
-              child: Text(
-                'No expenses found.',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            )
-                : ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: filteredExpenses.length,
-              itemBuilder: (context, index) {
-                final expense = filteredExpenses[index];
-
-                // Find the original index in the main list.
-                final originalIndex =
-                ExpenseData.expenses.indexOf(expense);
-
-                return ExpenseCard(
-                  expense: expense,
-
-                  onEdit: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddExpenseScreen(
-                          expense: expense,
-                          expenseIndex: originalIndex,
-                        ),
+                    child: Text(
+                      'No expenses found.',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
                       ),
-                    );
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: filteredExpenses.length,
+                    itemBuilder: (context, index) {
+                      final expense = filteredExpenses[index];
 
-                    setState(() {});
-                  },
+                      // Find the original index in the main list.
+                      final originalIndex = ExpenseData.expenses.indexOf(
+                        expense,
+                      );
 
-                  onDelete: () async {
-                    setState(() {
-                      ExpenseData.expenses.removeAt(originalIndex);
-                    });
+                      return ExpenseCard(
+                        expense: expense,
 
-                    await ExpenseData.saveExpenses();
-                  },
-                );
-              },
-            ),
+                        onEdit: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AddExpenseScreen(
+                                expense: expense,
+                                expenseIndex: originalIndex,
+                              ),
+                            ),
+                          );
+
+                          setState(() {});
+                        },
+
+                        onDelete: () async {
+                          setState(() {
+                            ExpenseData.expenses.removeAt(originalIndex);
+                          });
+
+                          await ExpenseData.saveExpenses();
+                        },
+                      );
+                    },
+                  ),
           ),
         ],
       ),
